@@ -8,5 +8,13 @@
     "start": "node server.js"
   },
   "author": "Anthony Cho <antcho92@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antcho92/url-shortener.git"
+  },
+  "bugs": {
+    "url": "https://github.com/antcho92/url-shortener/issues"
+  },
+  "homepage": "https://github.com/antcho92/url-shortener#readme"
 }
