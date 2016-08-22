@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/antcho92/url-shortener/issues"
   },
-  "homepage": "https://github.com/antcho92/url-shortener#readme"
+  "homepage": "https://github.com/antcho92/url-shortener#readme",
+  "dependencies": {
+    "mongodb": "^2.2.7"
+  }
 }
