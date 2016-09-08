@@ -14,8 +14,8 @@ router.get('/', function(req, res, next) {
   res.render('index', {
     //added locals so that the local address wouldn't change when deployed to heroku
     exampleInput: 'https://' + local + '/new/https://google.com',
-    exampleOutput: '{\"original_url\":\"https://www.google.com\",\"short_url\":\"https://' + local + '/ry5XrmRi\"}',
-    redirect: 'https://' + local + '/ry5XrmRi'
+    exampleOutput: '{\"original_url\":\"https://www.google.com\",\"short_url\":\"https://' + local + '/BJmcA4kn\"}',
+    redirect: 'https://' + local + '/BJmcA4kn'
   });
 });
 
