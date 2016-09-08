@@ -11,8 +11,10 @@ shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX
 router.get('/', function(req, res, next) {
   var local = req.get('host');
   res.render('index', {
+    //added locals so that the local address wouldn't change when deployed to heroku
     exampleInput: 'https://' + local + '/new/https://google.com',
-    exampleOutput: '{\"original_url\":\"https://www.google.com\",\"short_url\":\"https://' + local + '/rybaoa6s\"}'
+    exampleOutput: '{\"original_url\":\"https://www.google.com\",\"short_url\":\"https://' + local + '/ry5XrmRi\"}',
+    redirect: 'https://' + local + '/ry5XrmRi'
   });
 });
 
