@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var mongo = require('mongodb').MongoClient;
+var config = require('../config');
+var mLab = 'mongodb://' + config.db.host + '/' + config.db.name;
 var shortid = require('shortid');
 var validUrl = require('valid-url');
 
@@ -21,7 +23,7 @@ router.get('/', function(req, res, next) {
 // GET to handle new links
 router.get('/new/:url(*)', function(req, res, next) {
   //connect to mongodb and handle errors
-  mongo.connect('mongodb://localhost:27017/url-shortener', function(err, db) {
+  mongo.connect(mLab, function(err, db) {
     if (err) {
       throw new Error('Database failed to connect!');
     }
@@ -29,7 +31,7 @@ router.get('/new/:url(*)', function(req, res, next) {
     var collection = db.collection('links');
     var params = req.params.url;
     // find request url for JSON object return
-    var local = req.get('host') + '/';
+    var local = 'https://' + req.get('host') + '/';
 
     var newLink = function(db, callback) {
       //checks for a valid url
@@ -77,7 +79,7 @@ router.get('/new/:url(*)', function(req, res, next) {
 
 // GET to handle redirecting from short URL
 router.get('/:short', function(req, res) {
-  mongo.connect('mongodb://localhost:27017/url-shortener', function(err, db) {
+  mongo.connect(mLab, function(err, db) {
     if (err) {
       throw new Error('Database failed to connect!');
     }
