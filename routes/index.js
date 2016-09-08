@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongo = require('mongodb').MongoClient;
-var config = require('../config');
-var mLab = 'mongodb://' + config.db.host + '/' + config.db.name;
+var url = process.env.MONGOLAB_URI;
 var shortid = require('shortid');
 var validUrl = require('valid-url');
 
@@ -23,7 +22,7 @@ router.get('/', function(req, res, next) {
 // GET to handle new links
 router.get('/new/:url(*)', function(req, res, next) {
   //connect to mongodb and handle errors
-  mongo.connect(mLab, function(err, db) {
+  mongo.connect(url, function(err, db) {
     if (err) {
       throw new Error('Database failed to connect!');
     }
@@ -79,7 +78,7 @@ router.get('/new/:url(*)', function(req, res, next) {
 
 // GET to handle redirecting from short URL
 router.get('/:short', function(req, res) {
-  mongo.connect(mLab, function(err, db) {
+  mongo.connect(url, function(err, db) {
     if (err) {
       throw new Error('Database failed to connect!');
     }
