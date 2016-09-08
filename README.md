@@ -2,6 +2,5 @@
 
 url shortener microservice project for FCC
 
-Uses MongoDb to store urls.
-Using shortid to generate a url friendly code after using valid-url to check if the url
-that was given is valid.
+This app creates a short link for websites that can be used to redirect to the intended website.
+It can be seen in action at https://antcho92-url-shortener.herokuapp.com/
