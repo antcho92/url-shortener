@@ -7,11 +7,12 @@ html
             a(href = 'http://antcho92.github.io/') Anthony
         br
         p This app will accept a valid url and return a shortened url in JSON response. If the shortened URL is used, the app will redirect the user to the website that was shortened.
+        p Note: you must use a url starting with http or https        
         br
         h3 Example Creation Usage:
-        code https://api-projects-antcho92.c9users.io/new/https://google.com
+        code= exampleInput
         h3 Example Creation Output:
-        code {"oiginal_url":"https://www.google.com","short_url":"https://api-projects-antcho92.c9users.io/rybaoa6s"}
+        code= exampleOutput
         h3 Usage:
         code https://api-projects-antcho92.c9users.io/rybaoa6s
         h3 Will redirect to:

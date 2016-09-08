@@ -4,9 +4,16 @@ var mongo = require('mongodb').MongoClient;
 var shortid = require('shortid');
 var validUrl = require('valid-url');
 
+// Replace shortid characters _ and - to $ and @
+shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@');
+
 // GET home page
 router.get('/', function(req, res, next) {
-  res.render('index');
+  var local = req.get('host');
+  res.render('index', {
+    exampleInput: 'https://' + local + '/new/https://google.com',
+    exampleOutput: '{\"original_url\":\"https://www.google.com\",\"short_url\":\"https://' + local + '/rybaoa6s\"}'
+  });
 });
 
 // GET to handle new links
@@ -19,6 +26,8 @@ router.get('/new/:url(*)', function(req, res, next) {
     console.log('Successfully connected to MongoDB on port 27017.');
     var collection = db.collection('links');
     var params = req.params.url;
+    // find request url for JSON object return
+    var local = req.get('host') + '/';
 
     var newLink = function(db, callback) {
       //checks for a valid url
@@ -35,7 +44,7 @@ router.get('/new/:url(*)', function(req, res, next) {
             console.log('Found previous shortlink. Reusing.');
             res.json({
               original_url: params,
-              short_url: 'https://api-projects-antcho92.c9users.io/' + doc.short
+              short_url: local + doc.short
             });
           } else {
             console.log('No previous shortlink found. Making a new one');
@@ -47,7 +56,7 @@ router.get('/new/:url(*)', function(req, res, next) {
             collection.insert([newUrl]);
             res.json({
               oiginal_url: params,
-              short_url: 'https://api-projects-antcho92.c9users.io/' + shortCode
+              short_url: local + shortCode
             });
           }
         });
